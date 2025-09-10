@@ -1,0 +1,32 @@
+{% extends 'base.html'%}
+
+{% block title%} User Page {% endblock%}
+
+{% block content%}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/userpage.css') }}">
+
+    <h1> Welcome {{session.get('username')}} </h1>
+    <h3>Welcome to User DashBoard</h3>
+
+      <div class='user-content'>
+         <div class='user-funcs'>
+             <a href='{{ url_for('userpage',action='reserve')}}' >Reserve a Parking Spot</a>
+             <a href='{{ url_for('userpage',action='release')}}'>Release Parking Spot</a>
+             <a href='{{ url_for('userpage',action='summary')}}'>View Summary</a>
+            
+         </div>
+    </div>
+    <div class='user-main-content'>
+        {% if action == 'reserve' %}
+            {% include 'user_reserve_spot.html' %}
+        {% elif action == 'release' %}
+            {% include 'user_release_spot.html' %}
+        {% elif action == 'summary' %}
+            {% include 'user_summary.html' %}   
+        {% else %}
+            <h4> Select a function from the options available </h4>
+        {% endif %}
+    </div>  
+{% endblock%}
+
+

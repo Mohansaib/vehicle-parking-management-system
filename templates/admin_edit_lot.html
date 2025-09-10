@@ -1,0 +1,48 @@
+<h3> Edit Parking Lot </h3>
+
+<!-- to select parking lot from here     -->
+
+<form method='POST' action="{{url_for('admin_edit_lot')}}">
+    <label for="lot_id">Select Parking Lot </label>
+    <select name='lot_id' id ='lot_id' required>
+                <option value="" disabled selected>Select a Parking Lot to Edit</option>
+        {% for lot in lots %}
+            <option value= "{{lot.id}}">
+               Location Name:  {{ lot.prime_location_name}} , Address : {{ lot.address}} , Price : {{lot.price }}, Max_Num_spots: {{ lot.maximum_number_of_spots}}
+            </option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Edit">
+    </form>
+
+
+    <!-- the selected lot comes for edit here-->
+{% if selected_lot %}
+<form method='POST' action="{{ url_for('admin_update_lot')}}">
+    <input type="hidden" name="lot_id" value="{{selected_lot.id}}">
+
+      <div class="add-form-item">
+            <label for='prime_location_name'>Prime Location:</label>
+            <input type='text' id='prime_location_name' name='prime_location_name' value='{{selected_lot.prime_location_name}}' required> 
+         </div>
+         <div class="add-form-item">
+            <label for='price'>Price:</label>
+            <input type='number' id='price' name='price' value='{{selected_lot.price}}' required>
+         </div>
+         <div class="add-form-item">
+            <label for='address'>Address:</label>
+            <textarea id='address' name='address' cols='30' rows='3'required>{{selected_lot.address}} </textarea>
+         </div>
+         <div class="add-form-item">
+            <label for='pincode'>Pincode:</label>
+            <input type='text' id='pincode' name='pincode'value='{{selected_lot.pincode}}' required> 
+        </div>
+        <div class="add-form-item">
+            <label for='maximum_number_of_spots'>Maximum Number of Spots:</label>
+            <input type='number' id='maximum_number_of_spots' name='maximum_number_of_spots' value='{{selected_lot.maximum_number_of_spots}}' required> 
+        </div>
+        <div class='btns'>
+        <input type='submit' value='Update Parking Lot Values'>
+        </div>
+    </form>
+{% endif %}

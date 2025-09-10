@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/adminpage.css') }}">
+
+<h2>Admin Dashboard</h2>
+    <h4> Welcome ADMIN </h4>
+
+    <div class='admin-content'>
+         <div class='admin-funcs'>
+             <a href='{{ url_for('admin',action='add')}}' >Add a Parking Lot</a>
+             <a href='{{ url_for('admin',action='edit')}}'>Edit Parking Lot</a>
+             <a href='{{ url_for('admin',action='delete')}}'>Delete Parking Lot</a>
+             <a href='{{ url_for('admin',action='view')}}'>View Parking Lots</a>
+             <a href='{{ url_for('admin',action='viewusers')}}'>View Users</a>
+             <a href='{{url_for('admin',action='status')}}'>Parking Status </a>
+             <a href='{{ url_for('admin',action='summary')}}'>View Charts</a>
+         </div>
+    </div>
+    <div class='admin-main-content'>
+        {% if action == 'add' %}
+            {% include 'admin_add_lot.html' %}
+        {% elif action == 'edit' %}
+            {% include 'admin_edit_lot.html' %}
+        {% elif action == 'delete' %}
+            {% include 'admin_delete_lot.html' %}
+        {% elif action == 'view' %}
+            {% include 'admin_view_lot.html' %}
+        {% elif action == 'viewusers' %}
+            {% include 'admin_view_users.html' %}
+        {% elif action == 'summary' %}
+            {% include 'usercharts.html' %}
+        {% elif action == 'parkingstatus' %}
+            {% include 'adminparkingstatus.html' %}
+        
+        {% else %}
+            <h4> Select a function from the options available </h4>
+        {% endif %}
+    </div>  
+
+{% endblock %}

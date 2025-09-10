@@ -1,0 +1,48 @@
+<h2>Release a Parking Spot</h2>
+
+{% if active_reserv %}
+  <form method="POST" action="{{ url_for('release_spot') }}">
+    <label for="reserv_id">Select Reservation:</label>
+    <select id="reserv_id" name="reserv_id" required onchange="showDetails()">
+      <option value="" disabled selected>Select a reservation</option>
+      {% for res in active_reserv %}
+        <option 
+          value="{{ res.id }}"
+          data-spot="{{ res.spot.id }}"
+          data-lot="{{ res.spot.lot.prime_location_name }}"
+          data-address="{{ res.spot.lot.address }}"
+          data-start="{{ res.parking_timestamp }}"
+          data-price="{{ res.cost_per_unit_time }}">
+          Reservation #{{ res.id }} | Spot: {{ res.spot.id }}
+        </option>
+      {% endfor %}
+    </select>
+
+    <div id="details" style="margin-top: 20px; display:none;">
+      <h4>Reservation Details</h4>
+      <p><strong>Spot ID:</strong> <span id="spot_id"></span></p>
+      <p><strong>Lot:</strong> <span id="lot_name"></span></p>
+      <p><strong>Address:</strong> <span id="address"></span></p>
+      <p><strong>Start Time:</strong> <span id="start_time"></span></p>
+      <p><strong>Price(per hour):</strong> Rs<span id="price"></span></p>
+      <input type="submit" value="Release This Spot">
+    </div>
+  </form>
+
+  <script>
+    function showDetails() {
+      const dropdown = document.getElementById("reserv_id");
+      const option = dropdown.options[dropdown.selectedIndex];
+
+      document.getElementById("spot_id").textContent = option.dataset.spot;
+      document.getElementById("lot_name").textContent = option.dataset.lot;
+      document.getElementById("address").textContent = option.dataset.address;
+      document.getElementById("start_time").textContent = option.dataset.start;
+      document.getElementById("price").textContent = option.dataset.price;
+
+      document.getElementById("details").style.display = "block";
+    }
+  </script>
+{% else %}
+  <p>No active reservations found.</p>
+{% endif %}

@@ -1,0 +1,20 @@
+<h3> View Users Page </h3>
+{% if users %}
+<table border='2' cellpadding='10' class='admin-view-users-table'>
+    <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Email</th>
+    </tr>
+        {% for u in users %}
+        <tr>
+            <td>{{u.id - 1}}</td>
+            <td>{{u.username}}</td>
+            <td>{{u.email}}</td>
+        </tr>
+        {% endfor%}
+</table>
+
+{% else %}
+    <p>No users available</p>
+{% endif %}

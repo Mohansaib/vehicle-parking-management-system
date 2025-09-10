@@ -1,0 +1,27 @@
+<h3> occupied Parking slot Details </h3>
+<table border="2" cellpadding="10" class='admin-park-table'>
+    <tr>
+        <th>SpotID </th>
+        <th>Location</th>
+        <th>Address</th>
+        <th>Username</th>
+        <th>StartTime</th>
+    </tr>
+    {% for spot in spots %}
+        {% for reserv in spot.reservations %}
+        {% if reserv.leaving_timestamp == None%}
+        <tr>
+            <td>{{ spot.id }} </td>
+            <td>{{ spot.lot.prime_location_name}} </td>
+            <td>{{spot.lot.address}} </td>
+            <td>{{reserv.user.username}}</td>
+            <td>{{reserv.parking_timestamp}}</td>
+        </tr>
+        {%endif%}
+    {% endfor %}
+    {% endfor %}
+    </table>
+{% if spots == None %}
+    <p>no spots occupied </p>
+{% endif %}
+

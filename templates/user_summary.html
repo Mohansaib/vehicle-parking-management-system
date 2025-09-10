@@ -1,0 +1,58 @@
+<h3>Summary Page</h3>
+
+<div style="padding:10px; width:100px; border-radius:10px; text-align:center;background-color:white;margin-top:10px;">
+    <a href='{{ url_for('user_pie_chart') }}' style="text-decoration:none;color:blue;"> Charts </a>
+</div>
+
+<h4> Past Reservations Table </h4>
+
+{% if all_reservs %}
+<table border='2' cellpadding='10' class='summary-table'>
+    <tr>
+        <th>Id</th>
+        <th>Location</th>
+        <th>Address</th>
+        <th>Spot ID</th>
+        <th>Cost per hour</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Total Cost in rupees</th>
+    </tr>
+
+    {% for reserv in all_reservs %}
+    <tr>
+        <td>{{ reserv.id }}</td>
+
+        {% if reserv.spot and reserv.spot.lot %}
+            <td>{{ reserv.spot.lot.prime_location_name }}</td>
+            <td>{{ reserv.spot.lot.address }}</td>
+            <td>{{ reserv.spot.id }}</td>
+        {% else %}
+            <td colspan="3" style="color:red;">Spot/Lot Deleted</td>
+        {% endif %}
+
+        <td>{{ reserv.cost_per_unit_time }}</td>
+        <td>{{ reserv.parking_timestamp }}</td>
+
+        <td>
+            {% if reserv.leaving_timestamp %}
+                {{ reserv.leaving_timestamp }}
+            {% else %}
+                Still Occupied
+            {% endif %}
+        </td>
+
+        <td>
+            {% if reserv.leaving_timestamp %}
+                {{ ((reserv.leaving_timestamp - reserv.parking_timestamp).total_seconds() / 3600 * reserv.cost_per_unit_time)|round(2) }}
+            {% else %}
+                Still Occupied
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+{% else %}
+<p>No Reservations yet</p>
+{% endif %}

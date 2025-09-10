@@ -1,0 +1,54 @@
+body {
+    margin:6px;
+    box-sizing: border-box;
+}
+
+.user-content, .user-main-content {
+  padding: 20px 40px;
+  background-color: rgb(174, 191, 205);
+  margin: 20px auto;
+}
+
+.user-funcs {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  border: 2px solid black;
+}
+
+.user-funcs a {
+  display: inline-block;
+  border: 2px solid #333;
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: rgba(75, 137, 255, 0.8);
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.user-funcs a:hover {
+  background-color: #2563eb;
+}
+
+.user-main-content h4 {
+  text-align: center;
+  color: crimson;
+  border: 2px solid black;
+  padding: 6px;
+  border-radius: 2px;
+}
+
+.summary-table{
+  text-align: center;
+  width:100%;
+  margin:2px;
+  background-color:rgb(178, 178, 240);
+  color:black;
+}
+.summary-table th{
+   border:2px solid rgb(255, 255, 255);
+}
+.summary-table td{
+  border:2px solid white;
+}

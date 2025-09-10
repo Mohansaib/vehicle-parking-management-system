@@ -1,0 +1,74 @@
+body{
+  margin:10px;
+  box-sizing: border-box;
+}
+
+.admin-content, .admin-main-content{
+  padding:20px 40px;
+  background-color: rgb(131, 145, 160);
+  margin: 20px auto;
+}
+.admin-funcs{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  border:2px solid black;
+}
+
+.admin-funcs a{
+  display: inline-block;
+  /* border:2px solid red; */
+  padding:10px  20px;
+  margin:5px;
+  background-color: #2196F3;
+  text-decoration: none;
+  color:white;
+}
+.admin-funcs a:hover{
+  background-color: rgba(78, 231, 23, 0.782);
+}
+ 
+.admin-main-content h4{
+  text-align: center;
+  color:rgb(250, 2, 2);
+  border:2px solid black;
+}
+
+
+.add-form-item{
+ color:red;
+ display: flex;
+ flex-direction: column;
+ gap:3px;
+padding: 4px;
+}
+
+.btns{
+ display: flex;
+ justify-content: center;
+ margin-top:7px;
+}
+
+.admin-view-table,.admin-view-users-table,.admin-park-table{
+  text-align: center;
+  width:100%;
+  margin:2px;
+  background-color:rgb(59, 59, 206);
+
+}
+.admin-view-table th,td{
+  border:1px solid black;
+}
+.admin-view-table td{
+  background-color: #EAF4FF;
+  color:black;
+}
+.admin-park-table th,.admin-view-users-table th{
+  border:1px solid black;
+}
+
+.admin-view-users-table td,.admin-park-table td{
+  border:2px solild black;
+  background-color: #EAF4FF;
+  color:black;
+}

@@ -1,0 +1,32 @@
+<h1> Hi you are in admin view lot page </h1>
+<h2>View Parking Lots</h2>
+
+{% if lot_info %}
+
+    <table border='2' cellpadding='10' class='admin-view-table' >
+        <tr>
+            <th> ID </th>
+            <th>Location</th>
+            <th>Address</th>
+            <th>Pincode</th>
+            <th>Price</th>
+            <th>Total Spots </th>
+            <th> Available Spots </th>
+            <th> Occupied Spots </th>
+        </tr>
+        {% for lot in lot_info%}
+        <tr>
+            <td>{{lot.id}}</td>
+            <td>{{lot.prime_location_name}}</td>
+            <td>{{lot.address}}</td>
+            <td>{{lot.pincode}}</td>
+            <td>{{lot.price}}</td>
+            <td>{{lot.maximum_number_of_spots}}</td>
+            <td>{{lot.available_spots}}</td>
+            <td>{{lot.occ_spots}}</td>
+        </tr>
+        {% endfor%}
+    </table>
+    {% else %}
+        <p>No Parking Lot to View </p>
+    {% endif%}

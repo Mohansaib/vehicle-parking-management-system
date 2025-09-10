@@ -1,0 +1,17 @@
+<h2> User Reserve Spot </h2>
+
+ 
+{% block content%}
+<form method="POST" action="{{ url_for('reserve_spot') }}">
+  <label for="lot_id">Select Parking Lot:</label>
+    <select name="lot_id" required>
+        <option value="" disabled selected>Select a Parking Lot</option>
+        {% for lot in parking_lots %}
+            <option value="{{ lot.id }}">
+                Location: {{ lot.prime_location_name }} | Price : {{ lot.price }} | Address:  {{ lot.address }}
+            </option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Reserve a Spot">
+</form>
+{% endblock%}

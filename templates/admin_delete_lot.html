@@ -1,0 +1,16 @@
+<h2>Delete Parking Lot </h2>
+{% if del_lots %}
+ <form method='POST' action='{{ url_for('admin_delete_lot')}}'>
+   <label for='lot_id'> Select Lot to Delete:</label>
+   <select name='lot_id' id='lot_id' required>
+     {% for lot in del_lots %}
+       <option value='{{ lot.id }}'>
+         location name: {{ lot.prime_location_name }}, Location address:{{ lot.address }},  Price :{{lot.price}}
+    </option>
+     {% endfor %}
+    </select>
+    <input type='submit' value='Delete Lot'>
+    </form>
+{% else %}
+<p>No parking lots available to delete.</p>
+{% endif %}
